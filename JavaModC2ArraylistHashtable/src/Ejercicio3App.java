@@ -28,8 +28,10 @@ public class Ejercicio3App {
 			System.out.println("1-Introducir articulos");
 			System.out.println("2-Consultar un articulo");
 			System.out.println("3-Ver todos los articulos");
-			System.out.println("4-SALIR");
+			System.out.println("4-Modificar algun producto");
+			System.out.println("5-SALIR");
 			opcion = sc.nextLine();
+			String producto = "";
 			
 			switch (opcion) {
 			case "1":
@@ -37,17 +39,21 @@ public class Ejercicio3App {
 				break;
 			case "2":
 				System.out.println("Introduce el nombre del producto: ");
-				String producto = sc.nextLine();
+				producto = sc.nextLine();
 				consultarUnSoloArticulo(contenedorProducto, producto);
 				break;
 			case "3":
 				consultarTodosArticulos(contenedorProducto);
 				break;
 			case "4":
+				cambiarPrecioCantidadProducto(contenedorProducto, sc);
+				break;
+			case "5":
+				System.out.println("Que tenga un buen dia");
 				break;
 			}
 			
-		} while (!opcion.equals("4"));
+		} while (!opcion.equals("5"));
 		sc.close();
 		
 
@@ -78,6 +84,48 @@ public class Ejercicio3App {
 			end = sc.nextLine();
 
 		} while (!end.equals("YES"));
+	}
+	
+	//CAMBIAR PRECIO O CANTIDAD DE UN PRODUCTO
+	public static void cambiarPrecioCantidadProducto(Hashtable<String, Hashtable<Double, Double>> contenedorProducto, Scanner sc) {
+		
+		System.out.println("Introduce el nombre del producto: ");
+		String producto = sc.nextLine();
+		String eleccion = "";
+		double precio = contenedorProducto.get(producto).keys().nextElement();
+		double cantidad = contenedorProducto.get(producto).elements().nextElement();
+		Hashtable<Double, Double> contenedorPrecioCantidad = new Hashtable<Double, Double>();
+		
+		do {
+			System.out.println("ELIGE UNA OPCION: ");
+			System.out.println("1-Cambiar el precio: ");
+			System.out.println("2-Cambiar la cantidad: ");
+			System.out.println("3-Guardar y Salir");
+			eleccion = sc.nextLine();
+			
+			switch(eleccion) {
+			case "1":
+				System.out.println("Inroduce el nuevo precio: ");
+				precio = Double.parseDouble(sc.nextLine());
+				contenedorProducto.remove(producto);
+				contenedorPrecioCantidad.put(precio, cantidad);
+				contenedorProducto.put(producto, contenedorPrecioCantidad);
+				break;
+			case "2":
+				System.out.println("Inroduce la nueva cantidad: ");
+				cantidad = Double.parseDouble(sc.nextLine());
+				contenedorProducto.remove(producto);
+				contenedorPrecioCantidad.put(precio, cantidad);
+				contenedorProducto.put(producto, contenedorPrecioCantidad);
+				break;
+			case "3":
+				System.out.println("Gracias!!");
+				break;
+			}
+			
+		}while(!eleccion.equals("3"));
+		
+		
 	}
 	
 	

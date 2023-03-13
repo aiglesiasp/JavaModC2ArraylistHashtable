@@ -36,7 +36,6 @@ public class Ejercicio1App {
 			numeroAlumnos--;
 		} while(numeroAlumnos>0);
 		imprimirResultado(contenedorNotas);
-		
 	}
 	
 	

@@ -21,6 +21,7 @@ public class Ejercicio3App {
 		Scanner sc = new Scanner(System.in);
 		Hashtable<String, Hashtable<Double, Double>> contenedorProducto = new Hashtable<String, Hashtable<Double, Double>>();
 
+		rellenarProductos(contenedorProducto);
 		// LLAMAMOS A LA FUNCION PARA GENERAL LISTA DE PRODUCTOS
 		String opcion = "";
 		do {
@@ -57,6 +58,16 @@ public class Ejercicio3App {
 		sc.close();
 		
 
+	}
+	
+	//FUNCION RELLENAR PRODUCTOS ALEATORIAMENTE
+	public static void rellenarProductos(Hashtable<String, Hashtable<Double, Double>> contenedorProducto) {
+		for(int i =1; i<11; i++) {
+			Hashtable<Double, Double> contenedorPrecioCantidad = new Hashtable<Double, Double>();
+			contenedorPrecioCantidad.put((double)i, (double)i);
+			contenedorProducto.put("Articulo"+i, contenedorPrecioCantidad);
+		}
+		
 	}
 
 	// FUNCION GENERAR LISTA PRODUCTO-PRECIO-CANTIDAD
